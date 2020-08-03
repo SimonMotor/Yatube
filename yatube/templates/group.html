@@ -3,6 +3,7 @@
 {% block header %}{{ group.title }}{% endblock %}
 {% block content %}
 
+    <h1>{{group.title}}</h1>
     <p>{{ group.description }}</p>
     {% for post in posts %}
     <h3>
