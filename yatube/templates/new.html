@@ -1,11 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Новая запись{% endblock %}
+{% block title %}{% if post %}Редактировать запись{% else %}Новая запись{% endif %}{% endblock %}
 {% block content %}
 {% load user_filters %}
 
 <div class="row justify-content-center">
     <div class="card">
-        <div class="card-header">Новая запись</div>
+        <div class="card-header">
+            {% if post %}
+            Редактировать запись
+            {% else %}
+            Новая запись
+            {% endif %}
+        </div>
         <div class="card-body">
 
                 {% for error in form.errors %}
@@ -14,7 +20,8 @@
                     </div>
                 {% endfor %}
 
-            <form method="post" action="{% url 'new_post' %}">
+            <!--<form method="post" {% if post %} action="{% url 'post' username=username post_id=post_id %}"{% else %} action="{% url 'new_post' %}"{% endif %}>-->
+            <form method="post" action={% if post %}"{% url 'post_edit' username=username post_id=post_id %}"{% else %}"{% url 'new_post' %}"{% endif %}>
                 {% csrf_token %}
 
                 {% for field in form %}
@@ -31,7 +38,11 @@
 
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-primary">
-                    Создать запись
+                        {% if post %}
+                            Сохранить
+                        {% else %}
+                            Создать запись
+                        {% endif %}
                     </button>
                 </div>
             </form>

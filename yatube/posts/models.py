@@ -24,6 +24,7 @@ class Post(models.Model):
         "Group", on_delete=models.SET_NULL, blank=True,
         null=True, related_name="posts", verbose_name='Выберите группу',
         help_text='Необязательно')
+    image = models.ImageField(upload_to='posts/', blank=True, null=True)
 
     def __str__(self):
         auth = self.author

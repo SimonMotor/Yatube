@@ -6,3 +6,4 @@ class TestStringMethods(TestCase):
 
     def test_show_msg(self):
         self.assertTrue(False, msg="Важная проверка на истинность")
+
