@@ -4,9 +4,8 @@
 {% load thumbnail %}
 {% load cache %}
     <div class="container">
-        {% include "includes/menu.html" with follow=True %}
-            <h1> Последние обновления на сайте</h1>
-            {% cache 20 index_page %}
+        {% include "includes/menu.html" with index=True %}
+            <h1> Статьи избранных авторов</h1>
                 {% for post in page %}
                     {% include "includes/post_card.html" with post=post %}
                 {% endfor %}
@@ -14,7 +13,6 @@
                 {% if page.has_other_pages %}
                     {% include "includes/paginator.html" with items=page paginator=paginator %}
                 {% endif %}
-            {% endcache %}
     </div>
 
 {% endblock %}
