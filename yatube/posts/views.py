@@ -100,6 +100,7 @@ def post_edit(request, username, post_id):
         "image": request.FILES
         })
 
+
 @login_required
 def add_comment(request, username, post_id):
     post = get_object_or_404(Post, id=post_id, author__username=username)
