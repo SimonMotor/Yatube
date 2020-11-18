@@ -8,6 +8,7 @@ from .models import Group, Post, User, Follow, Comment
 
 class PostTestCase(TestCase):
     def setUp(self):
+        cache.clear()
         self.client = Client()
         self.unauth = Client()
         self.user = User.objects.create_user(username="m_smith")
@@ -15,9 +16,9 @@ class PostTestCase(TestCase):
         self.group = Group.objects.create(
             slug="test_group", title="test_group", description="test_desc"
         )
-        cache.clear()
 
     def search_pages(self, msg=None, post=None):
+        cache.clear()
         response_index = self.client.get(reverse("index"))
         response_profile = self.client.get(
             reverse("profile", kwargs={"username": "m_smith"})
